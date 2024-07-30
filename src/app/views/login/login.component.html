@@ -1,0 +1,52 @@
+<div
+  class="h-svh flex items-center justify-center overflow-y-auto xs:items-normal bg-green-50"
+>
+  <div
+    class="p-8 min-w-auth_form rounded-xl auth-bg-shadow bg-white xs:min-w-full overflow-y-auto"
+  >
+    @if (errorMessage){
+    <div
+      class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-3"
+      role="alert"
+    >
+      <strong class="font-bold">An error occured:</strong>
+      <br />
+      <span class="block sm:inline">{{ errorMessage }}</span>
+    </div>
+    }
+    <form
+      [formGroup]="form"
+      (ngSubmit)="onSubmit(submitBtn)"
+      class="flex flex-col gap-3"
+    >
+      <h1 class="font-semibold text-4xl text-gray-800 text-center">Login</h1>
+      <div>
+        <h2 class="auth-input-header">E-Mail</h2>
+        <input class="auth-input" type="text" formControlName="email" />
+      </div>
+      <div>
+        <h2 class="auth-input-header">Password</h2>
+        <input class="auth-input" type="text" formControlName="password" />
+      </div>
+      <div class="w-full flex justify-stretch mt-3">
+        <button
+          type="submit"
+          #submitBtn
+          [ngClass]="{
+            'bg-blue-500': !isLoading,
+            'hover:bg-blue-700': !isLoading,
+            'bg-gray-700': isLoading
+          }"
+          class="text-white font-bold py-2 px-4 rounded w-full"
+        >
+          Login
+        </button>
+      </div>
+
+      <p class="mt-3">
+        Doesn't have an account yet?
+        <a class="default-link-style" routerLink="/sign-up">Register</a>
+      </p>
+    </form>
+  </div>
+</div>
